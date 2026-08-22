@@ -13,6 +13,8 @@ interface AuthContextType {
   isLoading: boolean;
 }
 
+const API_URL = import.meta.env.VITE_API_URL || import.meta.env.VITE_SOCKET_URL || 'https://youtube-watch-party-backend-production.up.railway.app';
+
 const AuthContext = createContext<AuthContextType>({
   user: null,
   token: null,
@@ -32,7 +34,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   useEffect(() => {
     const restoreSession = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_SOCKET_URL || 'http://localhost:3001'}/api/auth/refresh`, {
+        const response = await fetch(`${API_URL}/api/auth/refresh`, {
           method: 'POST',
           credentials: 'include' // Important for sending the HTTP-only cookie
         });
@@ -59,7 +61,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const logout = async () => {
     try {
-      await fetch(`${import.meta.env.VITE_SOCKET_URL || 'http://localhost:3001'}/api/auth/logout`, {
+      await fetch(`${API_URL}/api/auth/logout`, {
         method: 'POST',
         credentials: 'include'
       });
