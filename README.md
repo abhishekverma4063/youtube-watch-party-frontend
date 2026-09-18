@@ -8,8 +8,35 @@
 
 ---
 
-## 🚀 Overview
-The frontend of the YouTube Watch Party application, built with **React** and **Vite**. It provides a sleek, dark-themed, glassmorphism UI for users to create rooms, invite friends, and watch YouTube videos perfectly synchronized across all devices.
+## 🚀 Project Overview
+This is the frontend component of the **YouTube Watch Party** application, designed to give users a premium, synchronized video-watching experience. Built with **React** and **Vite**, it features a sleek, dark-themed, glassmorphism UI. 
+
+When a user creates a room, they become the **Host** and can invite friends using a room code. The Host has full control over the video (Play, Pause, Seek), and the WebSockets ensure that every participant's screen stays perfectly in sync with millisecond precision. Additionally, users can chat in real-time, send floating emoji reactions, and request to join private rooms via a waiting list.
+
+## 📂 Project Structure
+```text
+frontend/
+├── src/
+│   ├── assets/                # Images, icons, and static assets
+│   ├── components/            # Reusable UI components and main pages
+│   │   ├── AudioChat.tsx      # WebRTC peer-to-peer audio
+│   │   ├── Chat.tsx           # Real-time room chat
+│   │   ├── DashboardPage.tsx  # Create/Join room landing page
+│   │   ├── LiveReactions.tsx  # Floating emoji reaction animations
+│   │   ├── LoginPage.tsx      # User authentication (Login)
+│   │   ├── SignupPage.tsx     # User authentication (Signup)
+│   │   ├── RoomPage.tsx       # Main synchronized video room
+│   │   ├── StudioControls.tsx # Host-only playback and admin controls
+│   │   ├── VideoPlayer.tsx    # YouTube IFrame API wrapper
+│   │   └── WaitingRoomPanel.tsx # Admin panel for admitting users
+│   ├── context/               # Global React State (Context API)
+│   │   ├── AuthContext.tsx    # Manages JWT sessions and user state
+│   │   ├── SocketContext.tsx  # Manages the global WebSocket connection
+│   │   └── ThemeContext.tsx   # Light/Dark mode toggling
+│   ├── hooks/                 # Custom React hooks
+│   ├── App.tsx                # Main Router and protected routes
+│   └── main.tsx               # React application entry point
+```
 
 ## 💻 Tech Stack
 - **Framework:** React 18 + Vite
@@ -23,7 +50,6 @@ The frontend of the YouTube Watch Party application, built with **React** and **
 - **Context API:** Utilizes React Context (`AuthContext`, `SocketContext`) for global state management.
 - **WebSocket Integration:** Maintains a persistent, low-latency connection to the backend to sync video states (play, pause, seek), handle chat messages, and manage room participants.
 - **Authentication:** Communicates with the backend REST API using secure HTTP-only cookies to handle JWT sessions seamlessly without exposing tokens to XSS attacks.
-- **Responsive Design:** A fully responsive, modern UI built with Tailwind CSS, featuring aesthetic glowing effects and backdrop blurs.
 
 ## 🔌 Running Locally
 
@@ -38,9 +64,3 @@ npm run dev
 ```
 
 > **Note:** The frontend development server runs on **Port 5173** by default (`http://localhost:5173`).
-
-## 🌟 Key Features
-- **Real-time Sync:** If the host pauses or seeks, everyone's video updates instantly.
-- **Role Management:** Room creators become Hosts with exclusive playback controls and waiting-room management.
-- **AFK Mode & PiP:** Users can mark themselves away; the app handles catch-up syncing.
-- **Live Chat:** Built-in chat system for participants to communicate during the video.
