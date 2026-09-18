@@ -164,6 +164,11 @@ const RoomPage: React.FC<Props> = ({ roomId, onLeave }) => {
       setChatMessages(prev => [...prev, msg]);
     };
 
+    const handleRoomClosed = (data: { message: string }) => {
+      toast.error(data.message, { duration: 5000 });
+      onLeave();
+    };
+
     socket.on('error_message', handleError);
     socket.on('user_joined', handleUserJoined);
     socket.on('user_left', handleUserLeft);
@@ -181,6 +186,7 @@ const RoomPage: React.FC<Props> = ({ roomId, onLeave }) => {
     socket.on('join_denied', handleJoinDenied);
     socket.on('waiting_for_approval', handleWaitingForApproval);
     socket.on('waiting_room_toggled', handleWaitingRoomToggled);
+    socket.on('room_closed', handleRoomClosed);
 
     const handleBeforeUnload = () => {
       socket.emit('leave_room', { roomId });
@@ -206,6 +212,7 @@ const RoomPage: React.FC<Props> = ({ roomId, onLeave }) => {
       socket.off('join_denied', handleJoinDenied);
       socket.off('waiting_for_approval', handleWaitingForApproval);
       socket.off('waiting_room_toggled', handleWaitingRoomToggled);
+      socket.off('room_closed', handleRoomClosed);
     };
   }, [socket, isConnected, roomId, onLeave, navigate, location.state, user?.id]);
 
