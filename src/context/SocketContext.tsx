@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { io, Socket } from 'socket.io-client';
 
-const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || (import.meta.env.DEV ? 'http://localhost:3001' : 'https://youtube-watch-party-backend-production.up.railway.app');
+const SOCKET_URL = import.meta.env.PROD ? 'https://youtube-watch-party-backend-production.up.railway.app' : 'http://localhost:3001';
 
 interface SocketContextType {
   socket: Socket | null;
@@ -27,6 +27,7 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
     const newSocket = io(SOCKET_URL, {
       auth: { token },
+      transports: ['websocket', 'polling'],
       // Phase 5: Resilient State Reconnection & Fault Tolerance
       // Automatically recovers the connection state (including rooms and offline queued packets)
       connectionStateRecovery: {

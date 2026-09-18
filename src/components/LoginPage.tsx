@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 import { Play, ArrowRight, User, Lock, Share, Copy, Download } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-const API_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : 'https://youtube-watch-party-backend-production.up.railway.app');
+const API_URL = import.meta.env.PROD ? 'https://youtube-watch-party-backend-production.up.railway.app' : 'http://localhost:3001';
 
 const LoginPage: React.FC = () => {
   const [username, setUsername] = useState('');
