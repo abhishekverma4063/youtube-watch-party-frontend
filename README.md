@@ -4,6 +4,9 @@
   <p align="center">
     <strong>Experience movies and videos together in perfect sync with real-time voice and live reactions.</strong>
   </p>
+  <p align="center">
+    <a href="https://youtube-watch-party-frontend-4utc.vercel.app/signup"><strong>🔗 View Live Application</strong></a>
+  </p>
 </div>
 
 ---
