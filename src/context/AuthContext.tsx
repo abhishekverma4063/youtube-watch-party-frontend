@@ -13,7 +13,7 @@ interface AuthContextType {
   isLoading: boolean;
 }
 
-const API_URL = import.meta.env.PROD ? 'https://youtube-watch-party-backend-production.up.railway.app' : 'http://localhost:3001';
+const API_URL = import.meta.env.PROD ? 'https://youtube-watch-party-backend-fsyd.onrender.com' : 'http://localhost:3001';
 
 const AuthContext = createContext<AuthContextType>({
   user: null,

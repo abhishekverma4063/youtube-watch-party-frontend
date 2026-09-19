@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { io, Socket } from 'socket.io-client';
 
-const SOCKET_URL = import.meta.env.PROD ? 'https://youtube-watch-party-backend-production.up.railway.app' : 'http://localhost:3001';
+const SOCKET_URL = import.meta.env.PROD ? 'https://youtube-watch-party-backend-fsyd.onrender.com' : 'http://localhost:3001';
 
 interface SocketContextType {
   socket: Socket | null;
